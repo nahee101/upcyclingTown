@@ -41,9 +41,6 @@ const CarouselReview = ({reviewRepository}) => {
         let orderedReview =  reviewArray.slice().sort((a,b) => b.reviewDate.localeCompare(a.reviewDate))
         setOnReviews(orderedReview)
     },[reviews])
-    
-    console.log(onReviews)
-    
 
     return (
         <section>
