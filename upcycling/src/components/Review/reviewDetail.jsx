@@ -8,7 +8,6 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import Nav from '../Nav/Nav';
 import SubMainBannerReviews from '../banner/SubMainBannerReviews';
-import Search from './Search';
 import CommentForm from './commentForm';
 import CommentReviseForm from './commentReviseForm';
 import WriteButton from './writeButton';
