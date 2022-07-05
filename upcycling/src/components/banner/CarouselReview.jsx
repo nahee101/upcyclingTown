@@ -28,7 +28,7 @@ const CarouselReview = ({reviewRepository}) => {
     const [onReviews, setOnReviews] = useState([])
 
 
-    //🍎게시물 삭제유무를 확인하기위한 firebase전체 리뷰
+    //🍎firebase전체 리뷰
     useEffect(()=> {
         const stopSync =  reviewRepository.syncReviews(reviews => {
             setReviews(reviews);

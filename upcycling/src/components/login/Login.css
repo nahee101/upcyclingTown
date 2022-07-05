@@ -61,4 +61,5 @@
 .fsite_msg:hover {
     color: #D6CE4B;
     text-decoration:underline;
+    cursor: pointer;
 }
