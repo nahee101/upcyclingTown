@@ -1,0 +1,34 @@
+@value makerWhite, makerBeige, makerGrey, makerPink, makerLightGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
+@value fontEn from '../../Review/common/font.css';
+
+.icon_container_button {
+    margin-top: 0.8rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    border: 1px solid makerGrey;
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: makerWhite;
+    color: makerDarkGreen;
+    padding: 0.7rem 1rem;
+    transition: all ease-in-out 0.2s;
+}
+
+.icon_container_button_ok {
+    margin-top: 0.8rem;
+    cursor: pointer;
+    margin-right: 0.8rem;
+    border: 1px solid makerDarkGreen;
+    border-radius: 10px;
+    background-color: makerDarkGreen;
+    color: makerBeige;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    transition: all ease-in-out 0.2s;
+}
+
+.icon_container_button_ok:hover {
+    background-color: #D6CE4B;
+    color: #004236;
+    border: #D6CE4B 1px solid
+}
