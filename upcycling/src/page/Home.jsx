@@ -13,10 +13,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { firestore } from '../firebase';
 import { collection, onSnapshot, query, where, orderBy, collectionGroup } from "firebase/firestore";
+import CarouselVideoList from '../components/banner/Video/CarouselVideoList';
 
 //🍎Home화면에서 회원등급을 redux로 받아오고 저장함
 
-const Home = ( {reviewRepository}) => {
+const Home = ( {reviewRepository, videos}) => {
 //🍎reudx
 const dispatch = useDispatch();
 
@@ -113,6 +114,7 @@ useEffect(()=>{
         <div>
             <Nav/>
             <SubMainBannerHome/>
+            <CarouselVideoList videos={videos} />
             <CarouselReview reviewRepository={reviewRepository}/>
             <CarouselDealList />
         </div>
