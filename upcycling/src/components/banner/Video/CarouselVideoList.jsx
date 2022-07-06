@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { Pagination, Navigation } from "swiper";
+import { Navigation } from "swiper";
 
 
 const CarouselVideoList = ({videos}) => {
@@ -34,7 +34,7 @@ const CarouselVideoList = ({videos}) => {
                         spaceBetween: 10,
                     },
                     1500: {
-                        slidesPerView: 3,
+                        slidesPerView: 2,
                         spaceBetween: 30,
                     },
                 }}
@@ -45,7 +45,7 @@ const CarouselVideoList = ({videos}) => {
                 {
                     videos&& videos.map(video => {
                         return <SwiperSlide key={video.id}>
-                            <VideoItem key={video.id} video={video}/>
+                            <VideoItem video={video}/>
                         </SwiperSlide>
                     })
                 }

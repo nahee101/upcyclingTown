@@ -1,23 +1,22 @@
+import { useEffect, useContext, useState } from 'react';
+
 //nav 바의 home
 import Nav from '../components/Nav/Nav';
 import SubMainBannerHome from '../components/banner/SubMainBannerHome';
 import CarouselReview from '../components/banner/CarouselReview';
 import CarouselDealList from '../components/banner/CarouselDealList';
-import { useEffect } from 'react';
+import CarouselVideoList from '../components/banner/Video/CarouselVideoList';
 
-import { useContext } from "react";
 import AuthContext from '../components/context/AuthContext';
-import { useState } from 'react';
 
 import { useDispatch, useSelector } from "react-redux";
 
 import { firestore } from '../firebase';
 import { collection, onSnapshot, query, where, orderBy, collectionGroup } from "firebase/firestore";
-import CarouselVideoList from '../components/banner/Video/CarouselVideoList';
 
 //🍎Home화면에서 회원등급을 redux로 받아오고 저장함
 
-const Home = ( {reviewRepository, videos}) => {
+const Home = ( {reviewRepository}) => {
 //🍎reudx
 const dispatch = useDispatch();
 
@@ -109,6 +108,38 @@ useEffect(()=>{
         console.log(commentsAmount)
     }
 },[onMyReviews,onMyComments,myDeals,myDComments])
+
+    /* 🥑 07-06 유튜브 api */
+    // 나중에 .env로 가릴 거예요
+    // 쿠키 문제 수정해야 됨
+    const apiKey = 'AIzaSyC-Gui_RdYDt6AkWFJH0gOssXAm6V8iXoo';
+    const [videos, setVideos] = useState([]);
+
+    const setCookies = () => {
+        document.cookie='crossCookie=bar; SameSite=None; Secure'
+    };
+
+    setCookies();
+
+    useEffect(() => {
+        console.log('useEffect');
+
+        const requestOptions = {
+        method: 'GET',
+        redirect: 'follow',
+        };
+
+        fetch(
+        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=${apiKey}`,
+        requestOptions,
+        )
+        .then((response) => response.json()) //반응을 json으로 변환
+        .then((result) => {
+            setVideos(result.items);
+            console.log(result.items);
+        })
+        .catch((error) => console.log('error', error));
+    }, []);
 
     return (
         <div>

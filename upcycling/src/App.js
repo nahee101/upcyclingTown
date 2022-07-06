@@ -104,31 +104,11 @@ const removeLike = (userId,review) => {
       })
   }, []);
 
-  /* 🥑 07-06 유튜브 api */
-  // 나중에 .env로 가릴 거예요
-  const apiKey = 'AIzaSyChu5qBRimOMOVFtY1MAQjGi2JgHwSuuNQ';
-  const [videos, setVideos] = useState([]);
-
-  useEffect(() => {
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow',
-    };
-
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=KR&maxResults=5&key=${apiKey}`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => setVideos(result.items))
-      .catch((error) => console.log('error', error));
-  }, []);
-
   return (
     <div className="App">
         <Routes>
           <Route path="/" element={!user?<FirstMain/> : <Home reviewRepository={reviewRepository}/>}></Route>
-          <Route path="/home" element={user ? <Home reviewRepository={reviewRepository} videos={videos} /> :<SignIn/> }></Route>
+          <Route path="/home" element={user ? <Home reviewRepository={reviewRepository} /> :<SignIn/> }></Route>
           <Route path="/about" element={<About/>}></Route>
           <Route path="/aboutupcycling" element={<Abup/>}></Route>
           <Route path="/mypage" element={< Mypage reviewRepository={reviewRepository} deals={deals}/>}></Route>

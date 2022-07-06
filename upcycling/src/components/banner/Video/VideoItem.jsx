@@ -6,7 +6,7 @@ const VideoItem = ({video}) => {
         height: '360',
         width: '640',
         playerVars: {
-            autoplay: 1,
+            autoplay: 0,
         }
     };
     
