@@ -3,8 +3,8 @@ import YouTube from 'react-youtube';
 const VideoItem = ({video}) => {
 
     const opts = {
-        height: '360',
-        width: '640',
+        height: '240',
+        width: '426',
         playerVars: {
             autoplay: 0,
         }
@@ -15,9 +15,10 @@ const VideoItem = ({video}) => {
         e.target.pauseVideo();
     }
 
+    console.log(video.id.videoId)
     return (
         <>
-            <YouTube videoId={video.id} opts={opts} onReady={onReady} />
+            <YouTube videoId={video.id.videoId} opts={opts} onReady={onReady} />
         </>
     )
 };

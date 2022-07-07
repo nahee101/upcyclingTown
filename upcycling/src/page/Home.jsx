@@ -115,23 +115,17 @@ useEffect(()=>{
     const apiKey = 'AIzaSyC-Gui_RdYDt6AkWFJH0gOssXAm6V8iXoo';
     const [videos, setVideos] = useState([]);
 
-    const setCookies = () => {
-        document.cookie='crossCookie=bar; SameSite=None; Secure'
-    };
-
-    setCookies();
+    console.log(videos)
 
     useEffect(() => {
-        console.log('useEffect');
-
-        const requestOptions = {
+        const requestSearch = {
         method: 'GET',
-        redirect: 'follow',
+        redirect: 'follow'
         };
 
         fetch(
-        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=${apiKey}`,
-        requestOptions,
+            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=upcycling&type=video&key=${apiKey}`,
+                        requestSearch
         )
         .then((response) => response.json()) //반응을 json으로 변환
         .then((result) => {
@@ -140,6 +134,9 @@ useEffect(()=>{
         })
         .catch((error) => console.log('error', error));
     }, []);
+
+
+    
 
     return (
         <div>

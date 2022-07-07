@@ -18,7 +18,7 @@ const CarouselVideoList = ({videos}) => {
     const navigate = useNavigate()
 
     return (
-        <section>
+        <section style={{'marginBottom': '4rem'}}>
         <div className="contents_swiper">
             <h2 className="Carousel_text">업사이클링 비디오</h2>
             <div className="contents_swiper">
@@ -31,10 +31,13 @@ const CarouselVideoList = ({videos}) => {
                 breakpoints={{
                     768: {
                         slidesPerView: 1,
+                    },
+                    1000: {
+                        slidesPerView: 2,
                         spaceBetween: 10,
                     },
                     1500: {
-                        slidesPerView: 2,
+                        slidesPerView: 3,
                         spaceBetween: 30,
                     },
                 }}
