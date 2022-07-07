@@ -63,8 +63,11 @@ const renderKeyword = (keyword) => {
 useEffect(()=>{
     let hasTextArray  = onReviews.filter(item=>item.reviewHashtags.includes(keyword))
     setFilteredReviews(hasTextArray)
-},[onReviews])
+},[onReviews,keyword])
 
+const viewAllReviews = () => {
+    dispatch(storeKeyword(null))
+}
 
     return (
         <section>
@@ -72,8 +75,15 @@ useEffect(()=>{
             <SubMainBanner/>
             <div className={styles.reviewPage}>
                 <div className={styles.header}>
-                    <Search onSearch={onSearch}/>
-                    <WriteButton/>
+                <button 
+                    onClick={viewAllReviews}
+                    className={styles.all_button}
+                >전체게시물보기</button>
+                    <div className={styles.header_container}>
+                        <Search onSearch={onSearch}/>
+                        <WriteButton/>
+                    </div>
+
                 </div>
                 {keyword && renderKeyword(keyword)}
                 <ul className={styles.list}>

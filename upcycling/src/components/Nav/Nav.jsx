@@ -3,12 +3,39 @@ import { useState , useEffect} from "react";
 import { SignOut } from "../../firebase";
 import Hamburger from 'hamburger-react'
 import './Nav.css'
+import { useSelector } from "react-redux";
+
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 const Nav = () => {
     const Swal = require('sweetalert2');
     const [scrolled, setScrolled] = useState(false);
     const [isOpen, setOpen] = useState(false);
-    
+    const [myGrade, setMyGrade] = useState('')
+
+    const { user } = useContext(AuthContext);
+    const postingAmount = useSelector((state)=>state.grade.postingAmount);
+    const commentsAmount = useSelector((state)=>state.grade.commentsAmount);
+
+    //🍎회원등급 
+    const userGrade = () => {
+        if(postingAmount>=30 && commentsAmount >=30) {
+            return '🌳(Level.4)'
+        }else if (postingAmount>=10 && commentsAmount >=10) {
+            return '🍎(Level.3)'
+        }else if (postingAmount>=1 && commentsAmount >=1) {
+            return '🌻(Level.2)'
+        }else {
+            return '🌱(Level.1)'
+        }
+    }
+
+    useEffect(()=> {
+        setMyGrade(userGrade())
+        console.log(myGrade)
+    })
+
 
     //scroll 30 기준으로 trun fasle 
     useEffect(()=>{
@@ -138,7 +165,7 @@ const Nav = () => {
                     </div>
                     <div className="site_msg_bar">
                         <div className="site_msg">
-                        Upcycling Ideas With 'UPTOWN'
+                        안녕하세요! 현재 {user.displayName}님의 등급은 {myGrade}입니다.
                         </div>
                     </div>
                 </nav> 

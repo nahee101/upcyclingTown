@@ -1,3 +1,9 @@
+.myPage_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .profileChange_box{
     display: flex;
     flex-direction: column;
@@ -18,11 +24,12 @@
     font-size: 1.2rem;
 }
 
-.mypage_info_container {
+.mypage_info_container, .mypage_grade_container {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-left: 2rem;
+    height: 130px;
 }
 
 .userProfile_photo img{
@@ -30,13 +37,21 @@
     border-radius: 50%;
 }
 
-.mypage_info_box {
+.mypage_info_box, .mypage_grade_box {
     margin-left: 1rem;
 }
 
 
-.mypage_info_box  p {
+.mypage_info_box  p, .mypage_grade_box p {
     font-size: 1.1rem;
+}
+
+.mypage_grade_box p {
+    color: grey;
+}
+
+.userGrade_name,.userGrade_vlaue {
+    display:inline;
 }
 
 .mypage_info_box  span {
@@ -44,9 +59,16 @@
     font-size: 1rem;
 }
 
-.mypage_info_buttons {
+.mypage_grade_box span {
+    color:#004236;
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+
+.mypage_info_buttons, .mypage_grade_buttons {
     display: flex;
-    align-items: center;
+    margin-bottom: 0;
+    align-items:flex-end;
     justify-content: flex-end;
     margin-right: 2rem;
 }
@@ -59,7 +81,14 @@
     transition: all 0.1s ease-in-out;
 }
 
-.userProfile_change:hover {
+.userGrade_info {
+    font-size: 1.8rem;
+    margin-right: 0.3rem;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.userProfile_change:hover, .userGrade_info:hover{
     color: #D6CE4B;
 }
 

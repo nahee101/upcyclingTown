@@ -9,7 +9,8 @@ import { useContext } from "react";
 import AuthContext from '../components/context/AuthContext';
 import { useState } from 'react';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getAmounts } from '../components/grade/gradeSlice';
 
 import { firestore } from '../firebase';
 import { collection, onSnapshot, query, where, orderBy, collectionGroup } from "firebase/firestore";
@@ -20,8 +21,8 @@ const Home = ( {reviewRepository}) => {
 //🍎reudx
 const dispatch = useDispatch();
 
-const { user } = useContext(AuthContext);
 //🍎user정보
+const { user } = useContext(AuthContext);
 const userId = user.uid;
 
 //🍎review /like
@@ -104,10 +105,9 @@ useEffect(()=>{
     if(onMyReviews && onMyComments && myDeals && myDComments) {
         const postingAmount = onMyReviews.length + myDeals.length;
         const commentsAmount = onMyComments.length + myDComments.length;
-        console.log(postingAmount)
-        console.log(commentsAmount)
+        dispatch(getAmounts({userId,postingAmount,commentsAmount}))
     }
-},[onMyReviews,onMyComments,myDeals,myDComments])
+},[onMyReviews,onMyComments,myDeals,myDComments,dispatch,userId])
 
     return (
         <div>

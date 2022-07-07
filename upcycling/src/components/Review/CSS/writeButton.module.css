@@ -3,6 +3,7 @@
 
 .button_write {
     margin-left: 3rem;
+    margin-right: 0;
     cursor: pointer;
     border: makerGrey 1px solid;
     background-color: makerDarkGreen;
