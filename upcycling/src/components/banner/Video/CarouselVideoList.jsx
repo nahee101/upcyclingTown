@@ -20,7 +20,7 @@ const CarouselVideoList = ({videos}) => {
     return (
         <section style={{'marginBottom': '4rem'}}>
         <div className="contents_swiper">
-            <h2 className="Carousel_text">업사이클링 비디오</h2>
+            <h2 className="Carousel_text">지구를 지키는 아이디어</h2>
             <div className="contents_swiper">
             <Swiper
                 onSwiper={setSwiperRef}
