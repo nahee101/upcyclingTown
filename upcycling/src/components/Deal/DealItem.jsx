@@ -29,40 +29,39 @@ const DealItem = ({deal}) => {
     console.log(elapsed)
 
     return (
-        <div className={styles.list}>
-            <section className={styles.container}>
-            {elapsed < 3000 ? <NewItem /> : <></> }
-                <img
-                src={deal.attachmentUrl}
-                onClick={onClick}
-                className={styles.dealImg} />
-                <h3>{deal.title}</h3>
-                {
-                    deal.completed.length == 1 ? (
-                        <h3 className={styles.price}>거래완료</h3>
-                    ) : (
-                        deal.price == '' && deal.completed.length == 0 ? (
-                            <h3 className={styles.price}>나눔💚</h3>
-                            ) : (
-                                <h3 className={styles.price}>&#8361; {dealPrice}</h3>
-                            )
-                    )
-                }
+        <section className={styles.container}>
+            {/* 30분 기준으로 새 글 보이기 */}
+            {elapsed < 300 ? <NewItem /> : <></> }
+            <img
+            src={deal.attachmentUrl}
+            onClick={onClick}
+            className={styles.dealImg} />
+            <h3>{deal.title}</h3>
+            {
+                deal.completed.length == 1 ? (
+                    <h3 className={styles.price}>거래완료</h3>
+                ) : (
+                    deal.price == '' && deal.completed.length == 0 ? (
+                        <h3 className={styles.price}>나눔💚</h3>
+                        ) : (
+                            <h3 className={styles.price}>&#8361; {dealPrice}</h3>
+                        )
+                )
+            }
 
-                <p className={styles.name}>{deal.creatorName}</p>
-                <div className={styles.hashtags}>
-                    <span>#{deal.hashtagArray[0] && deal.hashtagArray[0]}</span>
-                    <span>#{deal.hashtagArray[1] && deal.hashtagArray[1]}</span>
-                    <span>#{deal.hashtagArray[2] && deal.hashtagArray[2]}</span>
+            <p className={styles.name}>{deal.creatorName}</p>
+            <div className={styles.hashtags}>
+                <span>#{deal.hashtagArray[0] && deal.hashtagArray[0]}</span>
+                <span>#{deal.hashtagArray[1] && deal.hashtagArray[1]}</span>
+                <span>#{deal.hashtagArray[2] && deal.hashtagArray[2]}</span>
+            </div>
+            <div className={styles.likeBox}>
+                <div className={styles.icon}>
+                    <i className="fa-solid fa-heart"></i>
                 </div>
-                <div className={styles.likeBox}>
-                    <div className={styles.icon}>
-                        <i className="fa-solid fa-heart"></i>
-                    </div>
-                    <p className={styles.amount}>{deal.likeCount}</p>
-                </div>
-            </section>
-        </div>
+                <p className={styles.amount}>{deal.likeCount}</p>
+            </div>
+        </section>
     );
 };
 
