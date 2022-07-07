@@ -62,7 +62,48 @@
     animation: modal-bg-show 0.3s;
 }
 
+/*커스텀CSS*/
+.gradeInfo_container > h1 {
+    margin-left: 2rem;
+}
 
+.greadeInfo_innerContainer {
+    width: 80%;
+    margin: auto;
+}
+
+
+.gradeInfo_title {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid grey;
+}
+
+.gradeInfo_memberBox {
+    width: 100%;
+    margin-bottom: 1rem;
+
+}
+
+.gradeInfo_contents_box {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.gradeInfo_contents_box:nth-of-type(4) {
+    border-bottom: 1px solid grey;
+}
+
+.gradeInfo_contents_box_title {
+    margin-right: 5rem;
+}
+
+.gradeInfo_footer {
+    margin-top: 1rem;
+    color: #3a857e;
+}
 
 @keyframes modal-show {
     from {

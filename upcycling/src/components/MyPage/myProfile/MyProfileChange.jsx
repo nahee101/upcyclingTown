@@ -13,11 +13,13 @@ import Modalimg from '../../modal/modalimg';
 import MadalGradeInfo from '../../modal/madalGradeInfo'
 import TestProfile from '../../login/TestProfile';
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAmounts } from "../../grade/gradeSlice";
 
 
-const MyProfileChange = () => {
+const MyProfileChange = ({reviewRepository}) => {
     const { user } = useContext(AuthContext);
+    const userId = user.uid
     const [userid, setUserId] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalGradeOpen, setModaGradelOpen] = useState(false);
@@ -27,22 +29,77 @@ const MyProfileChange = () => {
     const postingAmount = useSelector((state)=>state.grade.postingAmount);
     const commentsAmount = useSelector((state)=>state.grade.commentsAmount);
 
+
+    const dispatch = useDispatch();
+
+    //🍎review /like
+    const [myReviews, setMyReviews] = useState([])
+    const [myComments, setMyComments] = useState([])
+
+    //🍎정렬까지 완료된 리뷰들
+    const [onMyReviews,setOnMyReviews] = useState([])
+    const [onMyComments, setOnMyComments] = useState([])
+
+    const [myDeals, setMyDeals] = useState([]);
+    const [myDComments, setMyDComments] = useState([]);
+
+    // 🍎📃firebase에 저장된 myReview받아오기(내가 작성한 리뷰)
+    useEffect(()=> {
+        const stopSync =  reviewRepository.syncMyReviewsById(reviews => {
+            setMyReviews(reviews);
+        }, userId)
+        return () => stopSync()
+    },[userId, reviewRepository])
+
+    // //🍎받아온 reviews를 value값만 가져오기 - 최신순 정렬
+    useEffect(()=> {
+        let reviewArray = Object.values(myReviews)
+        let orderedReview =  reviewArray.slice().sort((a,b) => b.reviewDate.localeCompare(a.reviewDate))
+        setOnMyReviews(orderedReview)
+    },[myReviews,reviewRepository])
+
+
+    //🍎✏️firebase에 저장된 myComments받아오기(내가 작성한 리뷰들)
+    useEffect(()=> {
+        const stopSync =  reviewRepository.syncMyCommentsById(comments => {
+            setMyComments(comments);
+        },userId)
+        return () => stopSync()
+    },[userId, reviewRepository])
+
+    //🍎받아온 Comments를 value값만 가져오기 - 최신순 정렬
+    useEffect(()=> {
+        let reviewArray = Object.values(myComments)
+        let orderedReview =  reviewArray.slice().sort((a,b) => b.date.localeCompare(a.date))
+        setOnMyComments(orderedReview)
+    },[myComments])
+
+    //🍎redux로 데이터보내기
+    useEffect(()=>{
+        if(onMyReviews && onMyComments && myDeals && myDComments) {
+            const postingAmount = onMyReviews.length + myDeals.length;
+            const commentsAmount = onMyComments.length + myDComments.length;
+            dispatch(getAmounts({userId,postingAmount,commentsAmount}))
+        }
+    },[onMyReviews,onMyComments,myDeals,myDComments,dispatch,userId])
+
      //🍎회원등급 
-     const userGrade = () => {
+    const userGrade = () => {
         if(postingAmount>=30 && commentsAmount >=30) {
-            return '🌳(Level.4)'
+            return '🌳(우수멤버)'
         }else if (postingAmount>=10 && commentsAmount >=10) {
-            return '🍎(Level.3)'
+            return '🍎(성실멤버)'
         }else if (postingAmount>=1 && commentsAmount >=1) {
-            return '🌻(Level.2)'
+            return '🌻(일반멤버)'
         }else {
-            return '🌱(Level.1)'
+            return '🌱(새싹멤버)'
         }
     }
 
     useEffect(()=> {
+        console.log(commentsAmount)
         setMyGrade(userGrade())
-    })
+    },[postingAmount,commentsAmount])
     
     const openModal = () => {
         setModalOpen(true);
@@ -100,13 +157,14 @@ const MyProfileChange = () => {
             </div>
 
             <div className="profileChange_box">
-                <h3 className='mypage_title'>회원등급안내</h3>
+                <h3 className='mypage_title'>멤버등급안내</h3>
                 <div className='mypage_grade_container'>
                     <div className='mypage_grade_box'>
-                        <p className="userGrade_name"><span>'{user.displayName&& user.displayName}'</span>님의 업타운 회원등급은&nbsp;</p> 
+                        <p className="userGrade_name"><span>'{user.displayName&& user.displayName}'</span>님의 업타운 멤버등급은&nbsp;</p> 
                         <p className="userGrade_vlaue"><span>{myGrade}</span>입니다.</p>
                         <div>
-                            <p>총 게시글<span>&nbsp;0</span>개 &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;   댓글 수 <span>&nbsp;0</span>개</p>
+                            <p>총 게시글<span>&nbsp;{postingAmount}</span>개 &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;   
+                            총 댓글 수 <span>&nbsp;{commentsAmount}</span>개 &nbsp;(삭제된 게시물 포함)</p>
                         </div>
                     </div>
                 </div>
@@ -115,7 +173,7 @@ const MyProfileChange = () => {
                         <i className="fa-solid fa-circle-info"></i>
                     </div>
                 </div>
-                <MadalGradeInfo open={modalGradeOpen} close={closeGradeModal} header="UPTOWN등급안내">
+                <MadalGradeInfo open={modalGradeOpen} close={closeGradeModal} header="UPTOWN 멤버등급안내">
                     <TestProfile/>
                 </MadalGradeInfo>
             </div>

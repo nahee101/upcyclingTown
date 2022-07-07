@@ -28,7 +28,7 @@ const Mypage = ({ reviewRepository, deals}) => {
             <div>
                 <Nav/>
                 <SubMainBanner/>
-                <MyProfileChange/>
+                <MyProfileChange reviewRepository={reviewRepository}/>
                 <MyPageTab reviewRepository={reviewRepository}/>
             </div>
         )

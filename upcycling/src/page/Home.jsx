@@ -112,7 +112,7 @@ useEffect(()=>{
     /* 🥑 07-06 유튜브 api */
     // 나중에 .env로 가릴 거예요
     // 쿠키 문제 수정해야 됨
-    const apiKey = 'AIzaSyC-Gui_RdYDt6AkWFJH0gOssXAm6V8iXoo';
+    const apiKey = '';
     const [videos, setVideos] = useState([]);
 
     console.log(videos)
@@ -124,9 +124,7 @@ useEffect(()=>{
         };
 
         fetch(
-            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=upcycling&type=video&key=${apiKey}`,
-                        requestSearch
-        )
+            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=upcycling&type=video&key=${apiKey}`,requestSearch)
         .then((response) => response.json()) //반응을 json으로 변환
         .then((result) => {
             setVideos(result.items);

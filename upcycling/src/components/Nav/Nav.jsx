@@ -18,22 +18,21 @@ const Nav = () => {
     const postingAmount = useSelector((state)=>state.grade.postingAmount);
     const commentsAmount = useSelector((state)=>state.grade.commentsAmount);
 
-    //🍎회원등급 
-    const userGrade = () => {
+     //🍎회원등급 
+     const userGrade = () => {
         if(postingAmount>=30 && commentsAmount >=30) {
-            return '🌳(Level.4)'
+            return '🌳(우수멤버)'
         }else if (postingAmount>=10 && commentsAmount >=10) {
-            return '🍎(Level.3)'
+            return '🍎(성실멤버)'
         }else if (postingAmount>=1 && commentsAmount >=1) {
-            return '🌻(Level.2)'
+            return '🌻(일반멤버)'
         }else {
-            return '🌱(Level.1)'
+            return '🌱(새싹멤버)'
         }
     }
 
     useEffect(()=> {
         setMyGrade(userGrade())
-        console.log(myGrade)
     })
 
 
@@ -165,7 +164,7 @@ const Nav = () => {
                     </div>
                     <div className="site_msg_bar">
                         <div className="site_msg">
-                        안녕하세요! 현재 {user.displayName}님의 등급은 {myGrade}입니다.
+                        안녕하세요! 현재 {user.displayName}님의 멤버등급은 {myGrade}입니다.
                         </div>
                     </div>
                 </nav> 
