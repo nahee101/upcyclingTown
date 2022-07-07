@@ -11,7 +11,6 @@ const VideoItem = ({video}) => {
     };
     
     const onReady = (e) => {
-        // access to player in all event handlers via event.target
         e.target.pauseVideo();
     }
 

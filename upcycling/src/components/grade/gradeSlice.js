@@ -1,20 +1,22 @@
 import { createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    gradeList : [
-        
-    ]
+    userId : '',
+    postingAmount : 0,
+    commentsAmount : 0
 }
 
 const greadeSlice = createSlice({
     name : 'gradeList',
     initialState,
     reducers : {
-        showGrade(state, action) {
-            
+        getAmounts(state, action) {
+            state.userId = action.payload.userId;
+            state.postingAmount = action.payload.postingAmount;
+            state.commentsAmount = action.payload.commentsAmount;
         }
     }
 })
 
-export const { showGrade } =greadeSlice.actions
+export const { getAmounts } =greadeSlice.actions
 export default greadeSlice.reducer;

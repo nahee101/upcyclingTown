@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     width: 100%;
     height: 13.5rem;
     background-color: makerDarkGreen;
@@ -28,7 +28,7 @@
     display: flex;
     position: relative;
     top: 50px;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     top: 55px;
     font-family: 'Libre Barcode 39 Text', cursive;
