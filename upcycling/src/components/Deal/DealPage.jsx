@@ -9,6 +9,7 @@ import { query, collection, where, onSnapshot } from "firebase/firestore";
 import SubMainBanner from "../banner/SubMainBannerDeal";
 import Nav from "../Nav/Nav";
 import DealItem from "./DealItem";
+import NewItem from "./NewItem";
 
 const DealPage = ({deals}) => {
 
@@ -82,6 +83,7 @@ const DealPage = ({deals}) => {
                             searchDeals.map(search => (
                                 <li key={search.createdAt}
                                 className={styles.list_item}>
+                                    <NewItem />
                                     <DealItem deal={search} />
                                 </li>
                             ))

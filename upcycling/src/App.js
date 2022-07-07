@@ -103,7 +103,6 @@ const removeLike = (userId,review) => {
         setDeals(dealArray);
       })
   }, []);
-  
 
   return (
     <div className="App">

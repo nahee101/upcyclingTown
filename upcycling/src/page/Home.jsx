@@ -1,13 +1,13 @@
+import { useEffect, useContext, useState } from 'react';
+
 //nav 바의 home
 import Nav from '../components/Nav/Nav';
 import SubMainBannerHome from '../components/banner/SubMainBannerHome';
 import CarouselReview from '../components/banner/CarouselReview';
 import CarouselDealList from '../components/banner/CarouselDealList';
-import { useEffect } from 'react';
+import CarouselVideoList from '../components/banner/Video/CarouselVideoList';
 
-import { useContext } from "react";
 import AuthContext from '../components/context/AuthContext';
-import { useState } from 'react';
 
 import { useDispatch } from "react-redux";
 import { getAmounts } from '../components/grade/gradeSlice';
@@ -109,10 +109,40 @@ useEffect(()=>{
     }
 },[onMyReviews,onMyComments,myDeals,myDComments,dispatch,userId])
 
+    /* 🥑 07-06 유튜브 api */
+    // 나중에 .env로 가릴 거예요
+    // 쿠키 문제 수정해야 됨
+    const apiKey = 'AIzaSyC-Gui_RdYDt6AkWFJH0gOssXAm6V8iXoo';
+    const [videos, setVideos] = useState([]);
+
+    console.log(videos)
+
+    useEffect(() => {
+        const requestSearch = {
+        method: 'GET',
+        redirect: 'follow'
+        };
+
+        fetch(
+            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=upcycling&type=video&key=${apiKey}`,
+                        requestSearch
+        )
+        .then((response) => response.json()) //반응을 json으로 변환
+        .then((result) => {
+            setVideos(result.items);
+            console.log(result.items);
+        })
+        .catch((error) => console.log('error', error));
+    }, []);
+
+
+    
+
     return (
         <div>
             <Nav/>
             <SubMainBannerHome/>
+            <CarouselVideoList videos={videos} />
             <CarouselReview reviewRepository={reviewRepository}/>
             <CarouselDealList />
         </div>
