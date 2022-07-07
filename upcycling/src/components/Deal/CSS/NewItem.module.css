@@ -15,7 +15,7 @@
     border: makerLime 1px solid;
     border-radius: 50%;
     z-index: 100;
-    position: relative;
-    top: 4rem;
-    right: -1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
 }

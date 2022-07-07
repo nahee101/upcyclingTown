@@ -2,6 +2,7 @@
 @value fontEn from '../../Review/common/font.css';
 
 .container {
+    position: relative;
     margin: 3rem 2rem;
     margin-bottom: 3rem;
     cursor: pointer;
@@ -63,4 +64,23 @@
     font-size: 1.5rem;
     background-color: makerDarkGreen;
     color: makerWhite;
+}
+
+.newItem {
+    background-color: makerLime;
+    color: makerDarkGreen;
+    width: 2.5rem; 
+    height: 2.5rem;
+    border: makerLime 1px solid;
+    border-radius: 50%;
+    z-index: 1;
+    position: absolute;
+    top: -1.25rem;
+    left: -1.25rem;
+}
+
+.newItem > h3 {
+    position: absolute;
+    top: -0.5rem;
+    left: 0.75rem
 }

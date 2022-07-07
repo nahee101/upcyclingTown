@@ -1,4 +1,4 @@
-import style from './CSS/NewItem.module.css';
+import style from './CSS/dealItem.module.css';
 
 const NewItem = () => {
     return (

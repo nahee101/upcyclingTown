@@ -29,9 +29,9 @@ const DealItem = ({deal}) => {
     console.log(elapsed)
 
     return (
-        <>
-            {elapsed < 300 ? <NewItem /> : <></> }
+        <div className={styles.list}>
             <section className={styles.container}>
+            {elapsed < 3000 ? <NewItem /> : <></> }
                 <img
                 src={deal.attachmentUrl}
                 onClick={onClick}
@@ -62,7 +62,7 @@ const DealItem = ({deal}) => {
                     <p className={styles.amount}>{deal.likeCount}</p>
                 </div>
             </section>
-        </>
+        </div>
     );
 };
 
