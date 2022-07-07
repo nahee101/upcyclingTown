@@ -3,7 +3,7 @@ import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 
 import { firestore ,SignOut } from "../../../firebase";
-import { collection, onSnapshot, query} from "firebase/firestore";
+import { collection, onSnapshot, query, where, orderBy, collectionGroup} from "firebase/firestore";
 
 import { useNavigate } from "react-router-dom";
 import "./MyProfileChange.css";
@@ -15,7 +15,6 @@ import TestProfile from '../../login/TestProfile';
 
 import { useDispatch, useSelector } from "react-redux";
 import { getAmounts } from "../../grade/gradeSlice";
-
 
 const MyProfileChange = ({reviewRepository}) => {
     const { user } = useContext(AuthContext);
@@ -95,6 +94,37 @@ const MyProfileChange = ({reviewRepository}) => {
             return '🌱(새싹멤버)'
         }
     }
+
+    //🥑 deals /내가 쓴 거
+    useEffect(() => {
+        const mydq = query(
+            collection(firestore, "dbDeals"),
+            where("creatorId", "==", user.uid),
+            orderBy("createdAt", "desc")
+        );
+
+        onSnapshot(mydq, (snapshot) => {
+            const myDealArray = snapshot.docs.map(doc => ({
+                id: doc.id, ...doc.data()
+            }));
+            setMyDeals(myDealArray);
+        });
+    }, [user.uid]);
+
+    useEffect(() => {
+        const mydc = query(
+            collectionGroup(firestore, "dComments"),
+            where("creatorId", "==", user.uid),
+            orderBy("createdAt", "desc")
+        );
+
+        onSnapshot(mydc, (snapshot) => {
+            const myDealCommentArray = snapshot.docs.map(doc => ({
+                id: doc.id, ...doc.data()
+            }));
+            setMyDComments(myDealCommentArray);
+        });
+    }, [user.uid]);
 
     useEffect(()=> {
         console.log(commentsAmount)
