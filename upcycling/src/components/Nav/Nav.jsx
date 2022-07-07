@@ -163,7 +163,8 @@ const Nav = () => {
                         <Hamburger toggled={isOpen} toggle={clickb}/>
                     </div>
                     <div className="site_msg_bar">
-                        <div className="site_msg">
+                        <div className="site_msg"
+                        onClick={()=>navigate("/mypage")}>
                         안녕하세요! 현재 {user.displayName}님의 멤버등급은 {myGrade}입니다.
                         </div>
                     </div>
