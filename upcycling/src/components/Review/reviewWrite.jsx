@@ -54,6 +54,8 @@ const ReviewWrite = ({createAndUpdateReview , imageUploader}) => {
             reviewDescription : reviewDescriptionRef.current.value,
             reviewHashtags : [reviewHashtagsRef1.current.value,reviewHashtagsRef2.current.value,reviewHashtagsRef3.current.value,],
             reviewDate :  format(date, "yyyy.MM.dd HH:mm"),
+            /* 🥑 N 아이콘 용 */
+            createdAt: Date.now()
         }; 
         formRef.current.reset();
         createAndUpdateReview(review, userId)

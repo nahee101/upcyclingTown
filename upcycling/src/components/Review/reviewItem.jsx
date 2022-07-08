@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './CSS/reviewItem.module.css'
+import NewItem from './NewItem';
 
 //🍎 ReviewPage에서 map으로 사용되는 item 컴포넌트
 
@@ -20,10 +21,16 @@ const ReviewItem = ({review, keyword}) => {
         }   
     })
 
-
+    /* 🥑 아이콘 */
+    const today = Date.now();
+    const writeTime = review.createdAt;
+    const elapsed = (today-writeTime)/(100*60);
+    console.log(elapsed)
 
     return (
         <section className={styles.container}>
+        {/* 30분 기준으로 새 글 보이기 */}
+        {elapsed < 300 ? <NewItem /> : <></> }
             <img className={styles.reviewImg} src={review.reviewIMG} alt="review"
                 onClick={()=>{
                     navigate(`/reviews/${review.id}`, {state : {review, keyword}})

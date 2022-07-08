@@ -1,4 +1,4 @@
-@value makerWhite,makerLime, makerBeige, makerGrey,makerPink,makerLightGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
+@value makerWhite, makerLime, makerBeige, makerGrey, makerPink, makerLightGrey, makerDarkGreen, makerGreen from '../../Review/common/color.css';
 @value fontEn from '../../Review/common/font.css';
 
 .container {

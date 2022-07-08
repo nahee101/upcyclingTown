@@ -6,7 +6,7 @@ const SubMainBannerMypage = () => {
         <div>
             <div className={styles.text}>
                 <h3> <span className={styles.span}>:UpTowner </span>Mypage</h3>
-                <p> 진행중인 이벤트 와 캠페인<br/>
+                <p> : 업타운에서<br/>
                 여러분의 이야기를 들려주세요!</p>
             </div>
         </div>
