@@ -25,7 +25,6 @@ const ReviewItem = ({review, keyword}) => {
     const today = Date.now();
     const writeTime = review.createdAt;
     const elapsed = (today-writeTime)/(100*60);
-    console.log(elapsed)
 
     return (
         <section className={styles.container}>

@@ -127,7 +127,6 @@ const MyProfileChange = ({reviewRepository}) => {
     }, [user.uid]);
 
     useEffect(()=> {
-        console.log(commentsAmount)
         setMyGrade(userGrade())
     },[postingAmount,commentsAmount])
     
@@ -190,7 +189,7 @@ const MyProfileChange = ({reviewRepository}) => {
                 <h3 className='mypage_title'>멤버등급안내</h3>
                 <div className='mypage_grade_container'>
                     <div className='mypage_grade_box'>
-                        <p className="userGrade_name"><span>'{user.displayName&& user.displayName}'</span>님의 업타운 멤버등급은&nbsp;</p> 
+                        <p className="userGrade_name"><span>'{user.displayName? user.displayName:'회원'}'</span>님의 업타운 멤버등급은&nbsp;</p> 
                         <p className="userGrade_vlaue"><span>{myGrade}</span>입니다.</p>
                         <div>
                             <p>총 게시글<span>&nbsp;{postingAmount}</span>개 &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;   

@@ -117,7 +117,7 @@ const MyReview = ({reviewRepository}) => {
         {onMyReviews.length !== 0? (<div className="contents_swiper">
             <Swiper
                 onSwiper={setSwiperRef}
-                centeredSlides={true}
+                centeredSlides={false}
                 pagination={{
                 type: "fraction",
                 }}
@@ -176,7 +176,7 @@ const MyReview = ({reviewRepository}) => {
         {onMyLikes.length !== 0? (<div className="contents_swiper">
             <Swiper
                 onSwiper={setSwiperRef}
-                centeredSlides={true}
+                centeredSlides={false}
                 pagination={{
                 type: "fraction",
                 }}
