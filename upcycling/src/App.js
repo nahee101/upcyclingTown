@@ -53,7 +53,6 @@ const deleteReview = (deletedItem,currentComment) => {
     alert('게시글을 삭제했습니다.');
     navigator('/reviews')
   }
-  console.log(deletedItem.reviewIMG)
 }
 
 
@@ -74,7 +73,6 @@ const createAndUpdateComment = (comment,reviewId,userId) => {
 //🍎지은 : 좋아요 누르기
 const clickLike = (userId, review) => {
   likeRepository.saveLike(userId, review)
-  console.log('app 좋아요 성공')
 }
 
 //🍎지은 : 좋아요 삭제 로직

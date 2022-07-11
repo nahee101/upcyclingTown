@@ -7,6 +7,8 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useState } from 'react';
 
+import defaltImg from '../../imgs/profile-picture.png'
+
 const CommentForm = ({ getComment, review }) => {
     const textareaRef = useRef();
     const [text, setText] = useState('')    
@@ -42,7 +44,7 @@ const CommentForm = ({ getComment, review }) => {
         id : 'C' + Date.now(),
         userName : userName,
         userEmail: userEmail,
-        userPhoto : userPhoto,
+        userPhoto : userPhoto?userPhoto : defaltImg,
         comment : text || '',
         isToggle : false,
         isForm : false,

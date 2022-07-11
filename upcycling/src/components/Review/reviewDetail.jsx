@@ -37,7 +37,6 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     const [currentComment, setCurrentComment] = useState()
 
     const [showCommentForm, setShowCommentForm] = useState(false);
-
     const divRef = useRef();
 
     //🍎firebase에 저장된 review받아오기
@@ -91,7 +90,6 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                 return delComment = comment;
             }
         })
-        console.log(deleteComment)
         deleteComment(delComment,reviewState.id, userId)
     }
 
@@ -116,9 +114,6 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
     const onShowCommentWriteForm = () => {
         setShowCommentForm(!showCommentForm)
     }
-
-
-
 
     return (
         <section >
@@ -159,7 +154,7 @@ const ReviewDetail = ({ deleteReview, reviewRepository, createAndUpdateComment, 
                 <div className={styles.icon_container}>
                     <div className={styles.icon_container_left}>
                     <Like reviewRepository={reviewRepository} review={reviewState} userId={user} clickLike={clickLike} removeLike={removeLike}/>
-                        <button onClick={()=>onShowCommentWriteForm()} className={styles.comment_button}><i className="fa-solid fa-comment-dots"></i></button>
+                        <button onClick={()=>onShowCommentWriteForm()} className={styles.comment_button}><i className="fa-solid fa-comment-dots"></i><span className={styles.commentsLength}>{comments.length}</span></button>
                     </div>
                     { userId === reviewState.userId && (<div className={styles.icon_container_right}>
                         <button className={styles.buttons} onClick={()=>goRevise(reviewState)}>글 수정</button>

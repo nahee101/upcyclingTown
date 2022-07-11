@@ -165,7 +165,7 @@ const Nav = () => {
                     <div className="site_msg_bar">
                         <div className="site_msg"
                         onClick={()=>navigate("/mypage")}>
-                        안녕하세요! 현재 {user.displayName}님의 멤버등급은 {myGrade}입니다.
+                        안녕하세요! 현재 {user.displayName?user.displayName:'회원'}님의 멤버등급은 {myGrade}입니다.
                         </div>
                     </div>
                 </nav> 

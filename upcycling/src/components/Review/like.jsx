@@ -35,8 +35,6 @@ function Like({reviewRepository, review, clickLike, removeLike}) {
             })
         })
 
-        console.log(currentReview.likes)
-
         useEffect(()=>{
             setLikeState('🤍')
             if(currentReview.likes !== undefined) {
@@ -55,22 +53,18 @@ function Like({reviewRepository, review, clickLike, removeLike}) {
 
             if(currentReview.likes === undefined) {
                 clickLike(userId, currentReview)
-
                 setLikeState('❤️')
                 
             } else if (currentReview.likes !== undefined) {
                 let likesArray = Object.keys(currentReview.likes)
-                likesArray.map(item=>{
-                    if(item !==userId) {
+                    if(!(likesArray.includes(userId))) {
                         clickLike(userId, currentReview)
-
                         setLikeState('❤️')
                     } else {
                         removeLike(userId, currentReview)
                         setLikeState('🤍')
                     }
-                })
-            }
+                }
         }
 
     return (
