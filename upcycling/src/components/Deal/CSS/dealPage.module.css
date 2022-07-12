@@ -92,7 +92,7 @@ textarea:focus, input:focus{
 /* 데스크탑 우선 개발 */
 /* 데스크탑 최적화 css */
 /* 아이패드 사이즈 */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 
     .dealPage {
         max-width: 100%;
