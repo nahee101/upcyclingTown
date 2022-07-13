@@ -24,7 +24,6 @@ textarea:focus, input:focus{
     max-width: 100%;
     margin:auto;
     margin-top: 1rem;
-    /* border: 1px solid red; */
 }
 
 .input_radio {

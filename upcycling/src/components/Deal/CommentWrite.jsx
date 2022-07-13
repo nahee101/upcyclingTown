@@ -1,6 +1,4 @@
-/* 🥑 댓글 작성 */
-// 06-20 사용자 정보
-import styles from './CSS/commentWrite.module.css'
+/* 🥑 market 댓글 작성 */
 
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthContext";
@@ -8,6 +6,11 @@ import { useLocation } from "react-router-dom";
 import { doc, setDoc, collection, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../firebase";
 import { format } from "date-fns";
+
+// css
+import styles from './CSS/commentWrite.module.css'
+
+// 사용 컴포넌트
 import CommentItem from './CommentItem';
 
 const CommentWrite = () => {

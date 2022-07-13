@@ -1,6 +1,4 @@
-/* 🥑 06-15 댓글 가져오기, 수정, 삭제 */
-// 06-20 사용자 정보
-// 작성자 아이디 = 현재 아이디 같을 때 삭제 수정 버튼 보임
+/* 🥑 market 댓글 리스트 */
 
 import React, { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
@@ -8,12 +6,14 @@ import { useLocation } from "react-router-dom";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 
+// css
 import styles from "./CSS/commentReviseForm.module.css"
 
 const CommentItem = ({ commentObj }) => {
     /* 사용자 정보 */
     const { user } = useContext(AuthContext);
 
+    /* useState */
     // editing 모드인지 아닌지
     const [editing, setEditing] = useState(false);
     // 업데이트

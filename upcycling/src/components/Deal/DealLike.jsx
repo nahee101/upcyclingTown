@@ -1,9 +1,11 @@
-/* 🥑 좋아요 */
+/* 🥑 market 좋아요 */
 
 import React, { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { firestore } from "../../firebase";
 import { doc, updateDoc, increment, arrayUnion, arrayRemove } from "firebase/firestore";
+
+// css
 import styles from './CSS/dealLike.module.css'
 
 const DealLike = ({dealState, isMyLike}) => {

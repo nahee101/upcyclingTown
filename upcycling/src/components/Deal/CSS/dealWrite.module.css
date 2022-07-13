@@ -190,7 +190,7 @@ textarea:focus, input:focus{
 }
 
 /*반응형*/
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .dealWrite {
         width: 85%;
     }

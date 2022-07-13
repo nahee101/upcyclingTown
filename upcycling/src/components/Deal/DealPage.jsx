@@ -1,15 +1,17 @@
-/* 🥑 deal 게시판 목록 */
+/* 🥑 market 전체 게시글 */
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from './CSS/dealPage.module.css';
 import { firestore } from "../../firebase";
 import { query, collection, where, onSnapshot } from "firebase/firestore";
 
+// css
+import styles from './CSS/dealPage.module.css';
+
+// 사용 컴포넌트
 import SubMainBanner from "../banner/SubMainBannerDeal";
 import Nav from "../Nav/Nav";
 import DealItem from "./DealItem";
-import NewItem from "./NewItem";
 
 const DealPage = ({deals}) => {
 
@@ -40,7 +42,6 @@ const DealPage = ({deals}) => {
                 id: doc.id, ...doc.data()
             }));
             setSearchDeals(searchArray);
-            console.log(searchDeals);
         });
     };
 
@@ -83,7 +84,6 @@ const DealPage = ({deals}) => {
                             searchDeals.map(search => (
                                 <li key={search.createdAt}
                                 className={styles.list_item}>
-                                    <NewItem />
                                     <DealItem deal={search} />
                                 </li>
                             ))

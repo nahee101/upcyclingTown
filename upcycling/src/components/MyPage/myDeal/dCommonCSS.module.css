@@ -6,6 +6,7 @@
 /*contents가 없을때*/
 .contents_empty {
     margin-top: 0;
+    color: #004236;
     background-color: #F8F3E8;
     margin: auto;
     width: 70%;

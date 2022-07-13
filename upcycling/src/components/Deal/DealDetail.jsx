@@ -1,4 +1,4 @@
-/* 🥑 거래글 자세히! */
+/* 🥑 market 개별 게시글 상세 보기 */
 
 import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
@@ -7,8 +7,10 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { ref, deleteObject } from "@firebase/storage";
 import { firestore, storage } from "../../firebase";
 
+// css
 import styles from './CSS/dealDetail.module.css'
 
+// 사용 컴포넌트
 import Nav from "../Nav/Nav";
 import SubMainBnnerDeal from "../banner/SubMainBannerDeal";
 import CommentWrite from "./CommentWrite";

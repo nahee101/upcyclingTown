@@ -1,11 +1,13 @@
-/* 🥑 deal 목록의 개체 */
-// 06-20 사용자 정보
-// css 완
+/* 🥑 market 개별 게시글 */
 
 import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+
+// css
 import styles from './CSS/dealItem.module.css';
+
+// 사용 컴포넌트
 import NewItem from "./NewItem";
 
 const DealItem = ({deal}) => {

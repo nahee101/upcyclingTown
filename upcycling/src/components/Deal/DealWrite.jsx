@@ -1,5 +1,4 @@
-/* 🥑 거래글 작성! */
-// 06-20 사용자 정보
+/* 🥑 market 게시글 작성 */
 
 import React, { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
@@ -10,8 +9,10 @@ import { v4 as uuidv4 } from "uuid"; // 사진 랜덤 아이디
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 
+// css
 import styles from "./CSS/dealWrite.module.css";
 
+// 사용 컴포넌트
 import Nav from "../Nav/Nav";
 import SubMainBannerDeal from "../banner/SubMainBannerDeal";
 

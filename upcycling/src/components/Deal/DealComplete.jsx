@@ -1,11 +1,13 @@
-/* 🥑 거래완료 */
+/* 🥑 거래 완료 */
 
 import React, { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { firestore } from "../../firebase";
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
-import styles from "./CSS/dealCompButton.module.css"
 import { useNavigate } from "react-router-dom";
+
+// css
+import styles from "./CSS/dealCompButton.module.css"
 
 const DealComplete = ({dealState, isCompleted}) => {
 

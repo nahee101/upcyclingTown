@@ -1,17 +1,18 @@
-/* 🥑 거래글 수정! */
-// 06-20 사용자 정보
+/* 🥑 market 게시글 수정 */
 
 import React, { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { firestore, storage } from "../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
-import { ref, uploadString, getDownloadURL } from "@firebase/storage";
+import { ref, uploadString, getDownloadURL } from "@firebase/storage"; // 사진 파일
 import { v4 as uuidv4 } from "uuid"; // 사진 랜덤 아이디
 import { useLocation, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 
+// css
 import styles from './CSS/dealRevise.module.css';
 
+// 사용 컴포넌트
 import Nav from "../Nav/Nav";
 import SubMainBannerDeal from "../banner/SubMainBannerDeal";
 

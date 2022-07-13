@@ -39,7 +39,6 @@ textarea:focus, input:focus{
     margin: 1rem 0;
     width: 100%;
     height: auto;
-    /* border: 1px solid aquamarine; */
     border-top: 1px solid makerLightGrey;
 }
 
@@ -104,10 +103,6 @@ textarea:focus, input:focus{
     font-size: 1.1rem;
     font-weight: bold;
     margin: 0;
-}
-
-.comments_email {
-    color: makerGrey;
 }
 
 .comments_date {
@@ -182,13 +177,11 @@ textarea:focus, input:focus{
     margin: 1rem 0;
     width: 100%;
     height: auto;
-    /* border: 1px solid aquamarine; */
     border-top: 1px solid makerLightGrey;
 }
 
 .comments_item {
     position: relative;
-    /* border: 1px solid deepskyblue; */
     margin-bottom: 1rem;
 }
 
