@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/upcyclingTown_build/static/css/main.feb637ba.css",
+    "main.js": "/upcyclingTown_build/static/js/main.9f4b5d56.js",
+    "static/media/subbannersale.jpg": "/upcyclingTown_build/static/media/subbannersale.d17a10fea263181fc1d8.jpg",
+    "static/media/bannerHome2.jpg": "/upcyclingTown_build/static/media/bannerHome2.325c538368a31549d653.jpg",
+    "static/media/frontImg2.jpg": "/upcyclingTown_build/static/media/frontImg2.4c95a366fd0af2dc7c70.jpg",
+    "static/media/press.jpg": "/upcyclingTown_build/static/media/press.74e4d748665b95d9b904.jpg",
+    "static/media/flea-market-g71c6d8602_1280.jpg": "/upcyclingTown_build/static/media/flea-market-g71c6d8602_1280.fbb609387d499a77d911.jpg",
+    "static/media/frontImg1.jpg": "/upcyclingTown_build/static/media/frontImg1.05d4d894c658cc72cc37.jpg",
+    "static/media/profile-picture.png": "/upcyclingTown_build/static/media/profile-picture.2fda6558cd58b877e14f.png",
+    "index.html": "/upcyclingTown_build/index.html",
+    "static/media/circle-chevron-right-solid.svg": "/upcyclingTown_build/static/media/circle-chevron-right-solid.acc9b42d048ed5fe4f73.svg",
+    "static/media/circle-chevron-left-solid.svg": "/upcyclingTown_build/static/media/circle-chevron-left-solid.88f38ec9e77072e4e58b.svg",
+    "main.feb637ba.css.map": "/upcyclingTown_build/static/css/main.feb637ba.css.map",
+    "main.9f4b5d56.js.map": "/upcyclingTown_build/static/js/main.9f4b5d56.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.feb637ba.css",
+    "static/js/main.9f4b5d56.js"
+  ]
+}
