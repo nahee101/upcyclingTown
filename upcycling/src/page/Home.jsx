@@ -110,8 +110,6 @@ const Home = ({ reviewRepository }) => {
     }, [onMyReviews, onMyComments, myDeals, myDComments, dispatch, userId])
 
     /* 🥑 07-06 유튜브 api */
-    // 나중에 .env로 가릴 거예요
-    // 쿠키 문제 수정해야 됨
     const apiKey = 'AIzaSyC-Gui_RdYDt6AkWFJH0gOssXAm6V8iXoo';
     const [videos, setVideos] = useState([]);
 
