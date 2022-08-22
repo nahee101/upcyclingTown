@@ -17,97 +17,97 @@ import { collection, onSnapshot, query, where, orderBy, collectionGroup } from "
 
 //🍎Home화면에서 회원등급을 redux로 받아오고 저장함
 
-const Home = ( {reviewRepository}) => {
-//🍎reudx
-const dispatch = useDispatch();
+const Home = ({ reviewRepository }) => {
+    //🍎reudx
+    const dispatch = useDispatch();
 
-//🍎user정보
-const { user } = useContext(AuthContext);
-const userId = user.uid;
+    //🍎user정보
+    const { user } = useContext(AuthContext);
+    const userId = user.uid;
 
-//🍎review /like
-const [myReviews, setMyReviews] = useState([])
-const [myComments, setMyComments] = useState([])
+    //🍎review /like
+    const [myReviews, setMyReviews] = useState([])
+    const [myComments, setMyComments] = useState([])
 
-//🍎정렬까지 완료된 리뷰들
-const [onMyReviews,setOnMyReviews] = useState([])
-const [onMyComments, setOnMyComments] = useState([])
+    //🍎정렬까지 완료된 리뷰들
+    const [onMyReviews, setOnMyReviews] = useState([])
+    const [onMyComments, setOnMyComments] = useState([])
 
-const [myDeals, setMyDeals] = useState([]);
-const [myDComments, setMyDComments] = useState([]);
+    const [myDeals, setMyDeals] = useState([]);
+    const [myDComments, setMyDComments] = useState([]);
 
-// 🍎📃firebase에 저장된 myReview받아오기(내가 작성한 리뷰)
-useEffect(()=> {
-    const stopSync =  reviewRepository.syncMyReviewsById(reviews => {
-        setMyReviews(reviews);
-    }, userId)
-    return () => stopSync()
-},[userId, reviewRepository])
+    // 🍎📃firebase에 저장된 myReview받아오기(내가 작성한 리뷰)
+    useEffect(() => {
+        const stopSync = reviewRepository.syncMyReviewsById(reviews => {
+            setMyReviews(reviews);
+        }, userId)
+        return () => stopSync()
+    }, [userId, reviewRepository])
 
-// //🍎받아온 reviews를 value값만 가져오기 - 최신순 정렬
-useEffect(()=> {
-    let reviewArray = Object.values(myReviews)
-    let orderedReview =  reviewArray.slice().sort((a,b) => b.reviewDate.localeCompare(a.reviewDate))
-    setOnMyReviews(orderedReview)
-},[myReviews,reviewRepository])
-
-
-//🍎✏️firebase에 저장된 myComments받아오기(내가 작성한 리뷰들)
-useEffect(()=> {
-    const stopSync =  reviewRepository.syncMyCommentsById(comments => {
-        setMyComments(comments);
-    },userId)
-    return () => stopSync()
-},[userId, reviewRepository])
-
-//🍎받아온 Comments를 value값만 가져오기 - 최신순 정렬
-useEffect(()=> {
-    let reviewArray = Object.values(myComments)
-    let orderedReview =  reviewArray.slice().sort((a,b) => b.date.localeCompare(a.date))
-    setOnMyComments(orderedReview)
-},[myComments])
+    // //🍎받아온 reviews를 value값만 가져오기 - 최신순 정렬
+    useEffect(() => {
+        let reviewArray = Object.values(myReviews)
+        let orderedReview = reviewArray.slice().sort((a, b) => b.reviewDate.localeCompare(a.reviewDate))
+        setOnMyReviews(orderedReview)
+    }, [myReviews, reviewRepository])
 
 
-//🥑 deals /내가 쓴 거
-useEffect(() => {
-    const mydq = query(
-        collection(firestore, "dbDeals"),
-        where("creatorId", "==", user.uid),
-        orderBy("createdAt", "desc")
-    );
+    //🍎✏️firebase에 저장된 myComments받아오기(내가 작성한 리뷰들)
+    useEffect(() => {
+        const stopSync = reviewRepository.syncMyCommentsById(comments => {
+            setMyComments(comments);
+        }, userId)
+        return () => stopSync()
+    }, [userId, reviewRepository])
 
-    onSnapshot(mydq, (snapshot) => {
-        const myDealArray = snapshot.docs.map(doc => ({
-            id: doc.id, ...doc.data()
-        }));
-        setMyDeals(myDealArray);
-    });
-}, [user.uid]);
-
-useEffect(() => {
-    const mydc = query(
-        collectionGroup(firestore, "dComments"),
-        where("creatorId", "==", user.uid),
-        orderBy("createdAt", "desc")
-    );
-
-    onSnapshot(mydc, (snapshot) => {
-        const myDealCommentArray = snapshot.docs.map(doc => ({
-            id: doc.id, ...doc.data()
-        }));
-        setMyDComments(myDealCommentArray);
-    });
-}, [user.uid]);
+    //🍎받아온 Comments를 value값만 가져오기 - 최신순 정렬
+    useEffect(() => {
+        let reviewArray = Object.values(myComments)
+        let orderedReview = reviewArray.slice().sort((a, b) => b.date.localeCompare(a.date))
+        setOnMyComments(orderedReview)
+    }, [myComments])
 
 
-//🍎redux로 데이터보내기
-useEffect(()=>{
-    if(onMyReviews && onMyComments && myDeals && myDComments) {
-        const postingAmount = onMyReviews.length + myDeals.length;
-        const commentsAmount = onMyComments.length + myDComments.length;
-        dispatch(getAmounts({userId,postingAmount,commentsAmount}))
-    }
-},[onMyReviews,onMyComments,myDeals,myDComments,dispatch,userId])
+    //🥑 deals /내가 쓴 거
+    useEffect(() => {
+        const mydq = query(
+            collection(firestore, "dbDeals"),
+            where("creatorId", "==", user.uid),
+            orderBy("createdAt", "desc")
+        );
+
+        onSnapshot(mydq, (snapshot) => {
+            const myDealArray = snapshot.docs.map(doc => ({
+                id: doc.id, ...doc.data()
+            }));
+            setMyDeals(myDealArray);
+        });
+    }, [user.uid]);
+
+    useEffect(() => {
+        const mydc = query(
+            collectionGroup(firestore, "dComments"),
+            where("creatorId", "==", user.uid),
+            orderBy("createdAt", "desc")
+        );
+
+        onSnapshot(mydc, (snapshot) => {
+            const myDealCommentArray = snapshot.docs.map(doc => ({
+                id: doc.id, ...doc.data()
+            }));
+            setMyDComments(myDealCommentArray);
+        });
+    }, [user.uid]);
+
+
+    //🍎redux로 데이터보내기
+    useEffect(() => {
+        if (onMyReviews && onMyComments && myDeals && myDComments) {
+            const postingAmount = onMyReviews.length + myDeals.length;
+            const commentsAmount = onMyComments.length + myDComments.length;
+            dispatch(getAmounts({ userId, postingAmount, commentsAmount }))
+        }
+    }, [onMyReviews, onMyComments, myDeals, myDComments, dispatch, userId])
 
     /* 🥑 07-06 유튜브 api */
     // 나중에 .env로 가릴 거예요
@@ -115,33 +115,31 @@ useEffect(()=>{
     const apiKey = 'AIzaSyC-Gui_RdYDt6AkWFJH0gOssXAm6V8iXoo';
     const [videos, setVideos] = useState([]);
 
-    console.log(videos)
 
     useEffect(() => {
         const requestSearch = {
-        method: 'GET',
-        redirect: 'follow'
+            method: 'GET',
+            redirect: 'follow'
         };
 
         fetch(
-            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=upcycling&type=video&key=${apiKey}`,requestSearch)
-        .then((response) => response.json()) //반응을 json으로 변환
-        .then((result) => {
-            setVideos(result.items);
-            console.log(result.items);
-        })
-        .catch((error) => console.log('error', error));
+            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=upcycling&type=video&key=${apiKey}`, requestSearch)
+            .then((response) => response.json()) //반응을 json으로 변환
+            .then((result) => {
+                setVideos(result.items);
+            })
+            .catch((error) => console.log('error', error));
     }, []);
 
 
-    
+
 
     return (
         <div>
-            <Nav/>
-            <SubMainBannerHome/>
+            <Nav />
+            <SubMainBannerHome />
             <CarouselVideoList videos={videos} />
-            <CarouselReview reviewRepository={reviewRepository}/>
+            <CarouselReview reviewRepository={reviewRepository} />
             <CarouselDealList />
         </div>
     )
